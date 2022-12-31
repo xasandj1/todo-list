@@ -161,6 +161,7 @@ button {
 .btn-secondary {
     color: #6750A4;
     padding: 10px;
+    transition: 0.3s;
 
     &:hover {
         background: #3b2b65;
@@ -175,6 +176,7 @@ button {
 .btn-danger {
     color: #CF1B1B;
     padding: 10px;
+    transition: 0.3s;
 
     &:hover {
         background: #9b3333;
@@ -239,7 +241,8 @@ button {
     letter-spacing: 0.25px;
     color: #49454F;
 }
-.note-btn{
+
+.note-btn {
     display: flex;
     align-items: flex-end;
     justify-content: end;
@@ -248,19 +251,88 @@ button {
     flex-wrap: wrap;
     margin-top: auto;
 }
-.notes{
+
+.notes {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 24px;
-    & div{
+
+    & div {
         height: 100%;
     }
-    &.active{
-        grid-template-columns: repeat(3,1fr);
-        & .note-info{
+
+    &.active {
+        grid-template-columns: repeat(3, 1fr);
+
+        & .note-info {
             flex-direction: column;
             align-items: flex-start;
 
         }
+    }
+}
+
+.add-note {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.35);
+    left: 0;
+    bottom: -100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+    transform: scale(0.7);
+    opacity: 0;
+    transition: .5s;
+
+    &.active {
+        transform: scale(1);
+        opacity: 1;
+        z-index: 1;
+        top: 0;
+    }
+
+    & .card {
+        max-width: 312px;
+        width: 100%;
+    }
+}
+
+.add-btn {
+    position: fixed;
+    bottom: 2%;
+    right: 1%;
+}
+
+.add-label {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: #E7E0EC;
+    border-radius: 4px 4px 0px 0px;
+    padding: 8px;
+    margin: 16px 0;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    color: #6750A4;
+    border-bottom: 1px solid #1C1B1F;
+    letter-spacing: 0.4px;
+}
+
+.add-input {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    color: #49454F;
+    outline: none;
+    border: none;
+    background: transparent;
+
+    &::placeholder{
+        color: rgb(116, 111, 123,0.5);
     }
 }

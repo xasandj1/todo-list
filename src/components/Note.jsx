@@ -3,7 +3,10 @@ import Card from "../components/Ul/Card"
 import Button from './Ul/Button'
 import {GoPencil} from "react-icons/go"
 import {FaTrashAlt} from "react-icons/fa"
+import { useContext } from 'react'
+import Context from './context/NoteContext'
 const Note = () => {
+  const {leng} = useContext(Context)
   return (
     <Card classes={"card"}>
       <div className='note-info'>
@@ -15,11 +18,11 @@ const Note = () => {
       <div className='note-btn'>
         <Button classes={"btn-secondary"}>
           <GoPencil/>
-          <span>РЕДАКТИРОВАТЬ</span>
+          <span>{leng.edit}</span>
         </Button>
         <Button classes={"btn-danger"}>
           <FaTrashAlt/>
-          <span>Удалить</span>
+          <span>{leng.edit}</span>
         </Button>
       </div>
     </Card>

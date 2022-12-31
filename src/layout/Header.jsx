@@ -1,29 +1,20 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import ruFlag from "../assets/img/ru-lang.svg"
 import uzFlag from "../assets/img/uz-lang.svg"
 import {FaSearch,FaArrowLeft} from "react-icons/fa"
 import Button from '../components/Ul/Button'
 import Card from '../components/Ul/Card'
 import {CgCloseO} from "react-icons/cg"
-import {ru,uz} from "../language"
+import Context from '../components/context/NoteContext'
 const Header = () => {
-  const [leng , setLeng] = useState(uz)
-  const [iconLang, setIconLang] = useState(false)
+  
+  const {leng,iconLang, changeLang,searchChange,searchClear,text} = useContext(Context)
   const [active, setActive] = useState(false)
-  const [text, setText] = useState("")
-  const searchChange = (e)=>{
-    setText(e.target.value)
-  }
-  const searchClear = (e)=>{
-    setText("")
-  }
-  const changeLang = (leng)=>{
-    leng === 'uz' ? setLeng(ru) : setLeng(uz)
-    setIconLang(!iconLang)
-  }
+  
+  
   const backHome = ()=>{
     setActive(!active)
-    setText("")
+    searchClear()
   }
 
   return ( 
