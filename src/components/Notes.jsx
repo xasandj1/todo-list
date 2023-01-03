@@ -5,7 +5,7 @@ import Note from './Note'
 import Button from './Ul/Button'
 
 const Notes = () => {
-  const {leng} = useContext(Context)
+  const {leng,notes,text} = useContext(Context)
   const [active,setActive] = useState(false)
   const noteActive = ()=>{
     setActive(!active)
@@ -25,12 +25,19 @@ const Notes = () => {
         </Button>
         </div>
         <div className={`notes ${active ? "active" : ""}`}>
-          <Note/>
-          <Note/>
-          <Note/>
-          <Note/>
-          <Note/>
-          <Note/>
+         {/* {notes.map((note)=>(
+          <Note note={note} key={note.id}/>
+         ))} */}
+         {notes.filter((note)=>{
+          if(text === ""){
+            return note
+          }else if(note.title.toString().toLowerCase().includes(text.toLowerCase())){
+            return note
+          }
+         }).map((note)=>(
+          <Note note={note} key={note.id}/>
+         ))
+         }
         </div> 
     </div>
   )

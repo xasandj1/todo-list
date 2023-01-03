@@ -4,8 +4,9 @@ import Card from "./Ul/Card"
 import Button from "./Ul/Button"
 import {GoPencil} from "react-icons/go"
 const AddNote = () => {
+    const {leng, addNote} = useContext(Context)
     const [ active, setActive] = useState(false)
-    const {leng} = useContext(Context)
+    const [disabl,setDisabl] = useState(false)
     const [title , setTitle] = useState("")
     const [text,setText] = useState("")
     const titleChange = (e)=>{
@@ -16,6 +17,8 @@ const AddNote = () => {
     }
     const addActive = ()=>{
         setActive(!active)
+        setTitle("")
+        setText ("")     
     }
     const noteSubmit = (e) =>{
         e.preventDefault()
@@ -26,7 +29,12 @@ const AddNote = () => {
                 text:text,
                 time:new Date().toLocaleDateString()
             }
+            addNote(newNote)
         }
+        setDisabl(false)   
+        setActive(false)
+        setTitle("")
+        setText ("")    
     }
   return (
     <>
@@ -46,7 +54,7 @@ const AddNote = () => {
                     <Button classes={"btn-danger"} click={addActive}>
                         <span>{leng.close}</span>
                     </Button>
-                    <Button classes={"btn-secondary"} type="submit">
+                    <Button classes={"btn-secondary"} type="submit" disable={disabl}>
                         <span>{leng.add}</span>
                     </Button>
                 </div>
