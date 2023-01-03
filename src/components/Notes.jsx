@@ -25,9 +25,6 @@ const Notes = () => {
         </Button>
         </div>
         <div className={`notes ${active ? "active" : ""}`}>
-         {/* {notes.map((note)=>(
-          <Note note={note} key={note.id}/>
-         ))} */}
          {notes.filter((note)=>{
           if(text === ""){
             return note
