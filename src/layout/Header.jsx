@@ -47,7 +47,6 @@ const Header = () => {
       <div className=''>
         <Button click={searchClear}>
           <CgCloseO className='icon' style={{height:"30px",width:"30px"}}/>
-          axaxaxxaxax
         </Button>
       </div>
     </Card>
