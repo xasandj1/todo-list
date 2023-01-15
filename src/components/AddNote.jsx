@@ -1,21 +1,31 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Context from './context/NoteContext'
 import Card from "./Ul/Card"
 import Button from "./Ul/Button"
 import {GoPencil} from "react-icons/go"
 const AddNote = () => {
-    const {leng, addNote} = useContext(Context)
+    const {leng, addNote,updateNote,noteEdit} = useContext(Context)
     const [ active, setActive] = useState(false)
     const [disabl,setDisabl] = useState(false)
     const [title , setTitle] = useState("")
     const [text,setText] = useState("")
+
+    useEffect(()=>{
+        if (noteEdit.edit) {
+            setDisabl(false)
+            setActive(true)
+            setTitle(noteEdit.item.title)
+            setText(noteEdit.item.text)
+        }
+    }, [noteEdit])
     const titleChange = (e)=>{
         setTitle(e.target.value) 
     }
     const textChange = (e)=>{
         setText (e.target.value)     
     }
-    const addActive = ()=>{
+    const addActive = (e)=>{
+        e.preventDefault()
         setActive(!active)
         setTitle("")
         setText ("")     
@@ -29,7 +39,11 @@ const AddNote = () => {
                 text:text,
                 time:new Date().toLocaleDateString()
             }
-            addNote(newNote)
+            if (noteEdit.edit === true) {
+                updateNote(noteEdit.item.id, newNote)
+            }else{
+                addNote(newNote)
+            }
         }
         setDisabl(false)   
         setActive(false)

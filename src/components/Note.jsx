@@ -6,7 +6,7 @@ import {FaTrashAlt} from "react-icons/fa"
 import { useContext } from 'react'
 import Context from './context/NoteContext'
 const Note = ({note}) => {
-  const {leng,delNote} = useContext(Context)
+  const {leng,delNote,editNote} = useContext(Context)
   return (
     <Card classes={"card"}>
       <div className='note-info'>
@@ -16,13 +16,13 @@ const Note = ({note}) => {
       </div>
       <p className='note-text'>{note.text}</p>
       <div className='note-btn'>
-        <Button classes={"btn-secondary"}>
+        <Button classes={"btn-secondary"} click={()=>editNote(note)}>
           <GoPencil/>
           <span>{leng.edit}</span>
         </Button>
         <Button classes={"btn-danger"} click={()=>delNote(note.id)}>
           <FaTrashAlt/>
-          <span>{leng.edit}</span>
+          <span>{leng.del}</span>
         </Button>
       </div>
     </Card>

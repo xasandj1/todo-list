@@ -17,6 +17,7 @@ export function NoteProvider({children}) {
     const [iconLang, setIconLang] = useState(false)
     const [text, setText] = useState("")
     const [notes,setNotes] = useState(getLocalStorage)
+    const [noteEdit , setNoteEdit] = useState({item:{},edit:false})
     useEffect(() => {
       localStorage.setItem("notes",JSON.stringify(notes))
     }, [notes]);
@@ -37,6 +38,20 @@ export function NoteProvider({children}) {
     const searchClear = (e)=>{
         setText("")
     }
+    const updateNote = (update, id) =>{
+      setNotes(notes.map((item)=>(item.id === id ?  update : item)))
+      setNoteEdit({
+        item:{},
+        edit:false
+      })
+    }
+    const editNote = (item)=>{
+      setNoteEdit({
+        item:item,
+        edit:true,
+
+      })
+    }
   return (
     <Context.Provider value={{
        leng,
@@ -47,7 +62,10 @@ export function NoteProvider({children}) {
        text,
        addNote,
        notes,
-       delNote
+       delNote,
+       updateNote,
+       noteEdit,
+       editNote
     }}>
         {children}
     </Context.Provider>
